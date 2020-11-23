@@ -1,10 +1,11 @@
 package ua.edu.ucu.collections.immutable;
 
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ImmutableArrayListTest {
-    
+
     @Test
     public void testConstruct() {
         ImmutableArrayList arr = new ImmutableArrayList();
@@ -291,10 +292,31 @@ public class ImmutableArrayListTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddSecondError() {
+        ImmutableArrayList arr = new ImmutableArrayList();
+        arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
+        arr.add(-100, "test");
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddAllSecondError() {
+        ImmutableArrayList arr = new ImmutableArrayList();
+        arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
+        arr.addAll(-100, new Object[] {"test"});
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testRemoveError() {
         ImmutableArrayList arr = new ImmutableArrayList();
         arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
         arr.remove(100);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testRemoveSecondError() {
+        ImmutableArrayList arr = new ImmutableArrayList();
+        arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
+        arr.remove(-100);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -305,10 +327,25 @@ public class ImmutableArrayListTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
+    public void testGetSecondError() {
+        ImmutableArrayList arr = new ImmutableArrayList();
+        arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
+        arr.get(-100);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testSetError() {
         ImmutableArrayList arr = new ImmutableArrayList();
         arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
         arr.set(100, "test");
+
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testSetSecondError() {
+        ImmutableArrayList arr = new ImmutableArrayList();
+        arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
+        arr.set(-100, "test");
 
     }
 

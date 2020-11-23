@@ -374,6 +374,20 @@ public class ImmutableLinkedListTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddSecondError() {
+        ImmutableLinkedList arr = new ImmutableLinkedList();
+        arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
+        arr.add(-100, "test");
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddAllSecondError() {
+        ImmutableLinkedList arr = new ImmutableLinkedList();
+        arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
+        arr.addAll(-100, new Object[] {"test"});
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testRemoveError() {
         ImmutableLinkedList arr = new ImmutableLinkedList();
         arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
@@ -381,10 +395,24 @@ public class ImmutableLinkedListTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
+    public void testRemoveSecondError() {
+        ImmutableLinkedList arr = new ImmutableLinkedList();
+        arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
+        arr.remove(-100);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testGetError() {
         ImmutableLinkedList arr = new ImmutableLinkedList();
         arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
         arr.get(100);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testGetSecondError() {
+        ImmutableLinkedList arr = new ImmutableLinkedList();
+        arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
+        arr.get(-100);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -396,28 +424,10 @@ public class ImmutableLinkedListTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testGetLastError() {
+    public void testSetSecondError() {
         ImmutableLinkedList arr = new ImmutableLinkedList();
-        arr.getLast();
-    }
+        arr = arr.addAll(new Object[] {"first item", 2, 3, 4});
+        arr.set(-100, "test");
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testGetFirstError() {
-        ImmutableLinkedList arr = new ImmutableLinkedList();
-        arr.getFirst();
-        System.out.println(arr.getFirst());
     }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testRemoveFirstError() {
-        ImmutableLinkedList arr = new ImmutableLinkedList();
-        arr.removeFirst();
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testRemoveLastError() {
-        ImmutableLinkedList arr = new ImmutableLinkedList();
-        arr.removeLast();
-    }
-
 }

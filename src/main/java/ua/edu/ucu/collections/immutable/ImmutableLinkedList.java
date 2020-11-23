@@ -14,8 +14,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
     }
 
-    final private Node head;
-    final private int size;
+    private final Node head;
+    private final int size;
 
     public ImmutableLinkedList() {
         head = new Node();
@@ -39,16 +39,17 @@ public class ImmutableLinkedList implements ImmutableList {
         return addAll(size, c);
     }
 
-    static private Node[] copy(Node node, int length) {
+    private static Node[] copy(Node node, int length) {
         Node copyHead = new Node();
         Node copyCurrent = copyHead;
+        Node current = node;
         for (int i = 0; i < length; i++) {
-            copyCurrent.setValue(node.getValue());
+            copyCurrent.setValue(current.getValue());
             copyCurrent.setNext(new Node());
             copyCurrent = copyCurrent.getNext();
-            node = node.getNext();
+            current = current.getNext();
         }
-        return new Node[] {copyHead, copyCurrent, node};
+        return new Node[] {copyHead, copyCurrent, current};
     }
 
     public ImmutableLinkedList addAll(int index, Object[] c) {
